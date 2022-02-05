@@ -49,13 +49,15 @@ export const getSignIn=()=> async (dispatch)=>{
         signInWithPopup(auth,provider)
         .then(result=>{
             onSnapshot(collection(db,'users'),usersDocs=>{
+                console.log(result.user)
                     const users=usersDocs.docs.map(users=>users.data())
-                         const checkUserExist=users.every(userFireBase=>userFireBase.userId!==result.user.uid)
+                         const checkUserExist=users.every(userFireBase=>userFireBase.email!==result.user.email)
                          if(checkUserExist){
                           addDoc(collection(db,'users'),{
                             userId:result.user.uid,
                             userName:result.user.displayName,
                             avatar:result.user.photoURL,
+                            email:result.user.email,
                             posts:[],
                             comments:[],
                             followers:[],

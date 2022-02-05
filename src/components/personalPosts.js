@@ -47,7 +47,11 @@ useEffect(()=>{
 <div>{filterUserById.posts.length>0?<div className='grid grid-cols-3 gap-x-7  gap-y-7'>
  {filterUserById.posts.map(post=>
   <div key={post.postId} className=' '>
-   <img  className='w-[300px] h-[300px] object-cover  cursor-pointer' src={post.link} alt='' />
+   
+   {post.type==='image'?<img className='w-[300px] h-[300px] object-cover  cursor-pointer'  src={post.link} alt='' />:''}
+   {post.type==='video'?<video className='h-[300px] w-full cursor-pointer bg-greyColor top-0' controls>
+     <source src={post.link} type='video/mp4' />
+   </video>:''}
    </div>
  )}
 

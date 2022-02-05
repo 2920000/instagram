@@ -135,7 +135,7 @@ function Header() {
             </div>
             <div className='w-full justify-end flex '>
                <div className='flex space-x-6 text-2xl items-center pl-5 '>
-               <AiFillHome className='cursor-pointer'/>
+               <Link to='/'><AiFillHome className='cursor-pointer'/></Link>
                <FiSend className='cursor-no-drop'/>
                <BiMessageSquareAdd onClick={handleShowPost} className='cursor-pointer'/>
                <ImCompass2 className='cursor-no-drop'/>

@@ -9,6 +9,7 @@ import {FaUserCheck} from 'react-icons/fa'
 import {IoChevronDown} from 'react-icons/io5'
 import {useSelector,useDispatch} from 'react-redux'
 import { actionFollow } from '../features/followSlice';
+import {Link} from 'react-router-dom'
 function UserInforUI({user}) {
     const [followers,setFollowers]=useState(false)
     const [following,setFollowing]=useState(false)
@@ -70,6 +71,11 @@ function UserInforUI({user}) {
         
     }
   })
+
+  const handleChat=()=>{
+  
+  }
+  
   return <div className='max-w-5xl m-auto px-10'>
              <div className='flex px-20 py-6 gap-x-24 items-center '>
                     <div>
@@ -86,7 +92,7 @@ function UserInforUI({user}) {
                             :<div>
                             {checkUserCurrentLogged
                             ?<div className='flex h-[30px] gap-x-2'>
-                                <div className='h-full px-2 rounded border cursor-pointer border-borderColor font-medium text-sm flex items-center'>Nhắn tin</div>
+                                <Link to={`/inbox/${userIdCurrentLogged}/${user.userId}`}><div onClick={()=>{handleChat()}} className='h-full px-2 rounded border cursor-pointer border-borderColor font-medium text-sm flex items-center'>Nhắn tin</div></Link>
                                 <div onClick={()=>{handleFollow()}} className='h-full px-7 text-greyColor  cursor-pointer rounded border border-borderColor flex items-center'><FaUserCheck/></div>
                                 <div className='h-full px-2 rounded border cursor-pointer border-borderColor flex items-center'><IoChevronDown/></div>
 

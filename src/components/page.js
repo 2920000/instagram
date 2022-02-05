@@ -9,6 +9,8 @@ import Tagged from './personalTagged';
 import {useDispatch} from 'react-redux'
 import { getUsers } from '../features/postSlice';
 import UsersSuggested from './UsersSuggested';
+import Inbox from './Inbox';
+import ChatBox from './ChatBox';
 function Page() {
      const dispatch =useDispatch()
      useEffect(()=>{
@@ -30,6 +32,9 @@ function Page() {
                 
               </Route>
               <Route path='/people' element={<UsersSuggested/>} />
+               <Route path='/inbox/:chatBox/' element={<Inbox/>} >
+                     <Route path=':boxId' element={<ChatBox/>} />
+               </Route>
             </Routes>
  
         </Router>

@@ -6,9 +6,7 @@ import { db } from '../config'
 const followSlice=createSlice({
     name:'follow',
     initialState:{
-     SHOW_BOX_FOLLOWERS:(   )=>{
-
-     }
+     
     }
     ,reducers:{
      

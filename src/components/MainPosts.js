@@ -58,6 +58,7 @@ let posts=[...postsOfUserCurrentLogged]
  const handleScale=(postIdClicked,userIdCurrent,allPosts,allUsers)=>{
   dispatch(updateLovePost(postIdClicked,userIdCurrent,allPosts,allUsers))
  }
+
  return <>
  {isLoad&&<div>
       <div className='absolute bg-greyColor z-40  mix-blend-multiply  top-0 right-0 left-0 bottom-0 '>
@@ -77,11 +78,11 @@ let posts=[...postsOfUserCurrentLogged]
  {posts.length>0?<div>
   {posts.map(post=><div  key={post.postId} className='my-5 border border-borderColor rounded'>
  <div className='flex p-3 justify-between' >
-   <Link to={`user/${userIdCurrentLogged}/`}><div className='flex gap-x-4 items-center  '>
+   <Link to={`user/${allUsers.find(user=>user.docId===post.docId).userId}/`}><div className='flex gap-x-4 items-center  '>
      <img className='w-8 h-8 rounded-full' src={post.avatar} alt=''/>
       <span className='text-sm font-medium'>{post.userName}</span>
    </div></Link>
-    <div className=''>...</div>
+    <div className='font-medium text-xl'>...</div>
  </div>
    <div >
    
@@ -93,7 +94,7 @@ let posts=[...postsOfUserCurrentLogged]
    <div className='flex justify-between px-4 py-3 '> 
     <div className='flex gap-x-4 '>
       <span className='relative'><AiOutlineHeart  className='text-[28px] cursor-pointer  '/>
-      { <div onClick={()=>{handleScale(post.postId,userIdCurrentLogged,allPosts,allUsers)}} className={`text-[28px] opacity-${post.love.some(userId=>userId===userIdCurrentLogged)?'1':'0'}  absolute top-0 transition-transform duration-700  ${post.love.some(userId=>userId===userIdCurrentLogged)?'':'active:scale-[2]'}  cursor-pointer text-[#ed4956]`}><AiFillHeart/></div>}
+      { <div onClick={()=>{handleScale(post.postId,userIdCurrentLogged,allPosts,allUsers)}} className={`text-[28px]  ${post.love.some(userId=>userId===userIdCurrentLogged)?'text-[#ed4956] opacity-100':'opacity-0'}  absolute top-0 transition-transform duration-700  ${post.love.some(userId=>userId===userIdCurrentLogged)?'':'active:scale-[2]'}  cursor-pointer `}><AiFillHeart/></div>}
       </span>
       <span><BiMessageRounded className='text-[28px] cursor-pointer'/></span>
       <span><FiSend className='text-[26px] cursor-pointer'/></span>

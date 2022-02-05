@@ -78,7 +78,7 @@ function PostOverlay() {
   return <div>
     {isShow&&<div className='absolute  top-0 bottom-0 right-0  left-0 bg-[rgba(37,37,37,1)] mix-blend-multiply h-screen'>
              <div className='absolute right-4 top-4' onClick={handleOffBoxPost} ><CgClose className='text-4xl cursor-pointer  text-whiteColor' /></div>
-             <div id='postBox'  className='max-w-[500px] overflow-hidden animate-scale  rounded-xl z-30 m-auto mt-20  bg-whiteColor h-[540px]'>
+             <div id='postBox'  className='w-[500px] overflow-hidden  rounded-xl z-30 m-auto absolute top-2/4 translate-y-[-50%] left-2/4 translate-x-[-50%] bg-whiteColor h-[540px]'>
               
              {linkPreview? 
              <div>
