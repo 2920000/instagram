@@ -1,4 +1,4 @@
-import React, { useEffect ,useRef, useState} from 'react';
+import React, { useEffect ,useRef, useState,memo} from 'react';
 import {useSelector,useDispatch} from 'react-redux'
 import { getAllPosts } from '../features/postSlice';
 import {AiOutlineHeart,AiFillHeart} from 'react-icons/ai'
@@ -21,6 +21,7 @@ function MainPosts() {
 
    }
  
+   console.log('re-render')
   //  console.log(allPosts)
    useEffect(()=>{
     dispatch(getAllPosts())
@@ -133,4 +134,4 @@ let posts=[...postsOfUserCurrentLogged]
  
 }
 
-export default MainPosts;
+export default memo(MainPosts);

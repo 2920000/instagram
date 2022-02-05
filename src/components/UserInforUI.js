@@ -3,16 +3,20 @@ import Follower from './Follower'
 import FollowerOverlay from './FollowerOverlay'
 import Following from './Following'
 import FollowingOverlay from './FollowingOverlay'
+import {v4 as uuid} from 'uuid'
 import {IoIosSettings} from 'react-icons/io'
 import {BsChevronDown,BsThreeDots} from 'react-icons/bs'
 import {FaUserCheck} from 'react-icons/fa'
 import {IoChevronDown} from 'react-icons/io5'
 import {useSelector,useDispatch} from 'react-redux'
 import { actionFollow } from '../features/followSlice';
-import {Link} from 'react-router-dom'
+import { addUserToChatBox } from '../features/chatSlice';
+import {useNavigate} from 'react-router-dom'
 function UserInforUI({user}) {
     const [followers,setFollowers]=useState(false)
     const [following,setFollowing]=useState(false)
+    const [loading,setLoading]=useState(false)
+    const navigate=useNavigate()
     const dispatch=useDispatch()
     //ID cua user dang đăng nhập
     const userId=useSelector(state=>state.user.userId)
@@ -72,11 +76,24 @@ function UserInforUI({user}) {
     }
   })
 
-  const handleChat=()=>{
+ 
+ 
+  const handleChat=(userCurrentLoggedInfor,userClickedToChat,boxId,)=>{
+   dispatch(addUserToChatBox(userCurrentLoggedInfor,userClickedToChat,boxId))
   
   }
+
+
+  const dataUserNew=useSelector(state=>state.chat.dataUserNew)
+  const isDone=useSelector(state=>state.chat.load)
+
+console.log(dataUserNew)
+if(isDone===true && dataUserNew.chatBox.find(chatBox=>chatBox.userId===user.userId)!==undefined)
+{navigate(`/inbox/${userCurrentLoggedInfor.userId}/${dataUserNew.chatBox.find(chatBox=>chatBox.userId===user.userId).boxId}`)}
+
   
   return <div className='max-w-5xl m-auto px-10'>
+  
              <div className='flex px-20 py-6 gap-x-24 items-center '>
                     <div>
                         <img className='w-36 h-36 rounded-full object-cover' src={user.avatar} alt=''/>
@@ -92,7 +109,7 @@ function UserInforUI({user}) {
                             :<div>
                             {checkUserCurrentLogged
                             ?<div className='flex h-[30px] gap-x-2'>
-                                <Link to={`/inbox/${userIdCurrentLogged}/${user.userId}`}><div onClick={()=>{handleChat()}} className='h-full px-2 rounded border cursor-pointer border-borderColor font-medium text-sm flex items-center'>Nhắn tin</div></Link>
+                                <div onClick={()=>{handleChat(userCurrentLoggedInfor,user,uuid())}} className='h-full px-2 rounded border cursor-pointer border-borderColor font-medium text-sm flex items-center'>Nhắn tin</div>
                                 <div onClick={()=>{handleFollow()}} className='h-full px-7 text-greyColor  cursor-pointer rounded border border-borderColor flex items-center'><FaUserCheck/></div>
                                 <div className='h-full px-2 rounded border cursor-pointer border-borderColor flex items-center'><IoChevronDown/></div>
 

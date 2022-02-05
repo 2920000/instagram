@@ -1,4 +1,5 @@
 import {configureStore} from '@reduxjs/toolkit'
+import chatSlice from '../features/chatSlice'
 import followSlice from '../features/followSlice'
 import loginSlice from '../features/loginSlice'
 import postSlice from '../features/postSlice'
@@ -9,7 +10,8 @@ const store =configureStore({
       user:loginSlice.reducer,
       allUsers:usersSilce.reducer,
       posts:postSlice.reducer,
-      follow:followSlice.reducer
+      follow:followSlice.reducer,
+      chat:chatSlice.reducer
     },
     middleware:getDefaultMiddleware=>(
       getDefaultMiddleware({

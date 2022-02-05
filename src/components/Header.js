@@ -11,7 +11,7 @@ import {RiSettings3Line} from 'react-icons/ri'
 import { Link } from 'react-router-dom'
 import PostOverlay from './PostOverlay';
 import { SHOW_OR_OFF_BOX_POST } from '../features/postSlice';
-
+import { INITIALIZE_CHATBOX_SUCCESS } from '../features/chatSlice';
 
 
 function Header() {
@@ -113,17 +113,22 @@ function Header() {
       setCloseSearchIcon(false)
       setInput('')
     }
-    //handle tim kiem
+
 
    
       //handle tìm kiếm
      const usersFiltered= users.filter(user=>user.userName.includes(input))
-     
+
+  // Cần xem lại   
+     const handleReStore=()=>{
+dispatch(INITIALIZE_CHATBOX_SUCCESS(false))
+
+     }
   return <>
      <div className='h-[60px] border-b border-borderColor fixed  w-full z-20  bg-whiteColor '>
        <div className=' relative  max-w-5xl m-auto h-full   flex items-center px-10  '>
            <div className='min-w-[120px] flex justify-start w-full '>        
-              <Link to='/'>  <img  src='https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png' alt='' /></Link>
+              <Link onClick={handleReStore} to='/'>  <img  src='https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png' alt='' /></Link>
            </div>
             <div className='w-[700px] hidden sm:block' >
                  <div className='flex items-center relative px-10 py-1 bg-greyLightColor rounded-md  '>
